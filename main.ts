@@ -28,6 +28,26 @@ function Sharks () {
         `, SpriteKind.tiburon)
     shark.setPosition(175, randint(25, 85))
     shark.setVelocity(-30, 0)
+    shark2 = sprites.create(img`
+        ..........fffcc...fffffff...........
+        ..........fbbbbcffbbbbbbbf..........
+        ...........fbffbbbbb111bbf..........
+        ...........ffbbbbff11111bf..........
+        .........ffcbbbbbff1cccc1f..........
+        ........fcccbcbcbb1c1c1cff..........
+        ccccc..fcccbcbcbbb1333ccf...........
+        cbbddcfccccbcbcbbb1c333c............
+        .ccbddcccccbbbbbbb1c333c............
+        ..ccbbccccccbbbbb11c333c............
+        ..fccbfccccccbbbb11c133cc...........
+        ..fccfcbbcccccbbbc11c31cc...........
+        .fcbbf.cdddddfbbbc111111c...........
+        .fbbf...cdddfbbdbf1111cc............
+        fbbf.....ccfbbdbfffccc..............
+        fff........fffff....................
+        `, SpriteKind.tiburon)
+    shark2.setPosition(175, randint(25, 85))
+    shark2.setVelocity(30, 0)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.tiburon, function (sprite, otherSprite) {
     diver_hp.value += -10
@@ -70,7 +90,6 @@ function instructions (name: string) {
     game.showLongText("HOW TO PLAY: ", DialogLayout.Top)
     game.showLongText("Welcome " + name + "! " + "The goal of this game is to collect as many pearls before you get eaten by a shark!", DialogLayout.Center)
 }
-// Need work (change animation of pearl)
 sprites.onOverlap(SpriteKind.Player, SpriteKind.pearl, function (sprite, otherSprite) {
     info.changeScoreBy(1)
     pause(2000)
@@ -103,10 +122,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.icerberg_enemy, function (sprite
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     PLayer_diver.setImage(assets.image`Diver2`)
 })
-// these Three block are not done yet
-function speed_change () {
-    diffuculty_time = diffuculty_time - 500
-}
 statusbars.onZero(StatusBarKind.oxygen_level, function (status) {
     game.setGameOverMessage(false, "YOU HAVE DROWNED")
     game.gameOver(false)
@@ -114,9 +129,6 @@ statusbars.onZero(StatusBarKind.oxygen_level, function (status) {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Air, function (sprite, otherSprite) {
     player_oxygen.value += 3
     pause(100)
-})
-info.onScore(5, function () {
-    speed_change()
 })
 function clamsfunction () {
     clams = sprites.create(img`
@@ -144,8 +156,8 @@ let clams: Sprite = null
 let player_oxygen: StatusBarSprite = null
 let PLayer_diver: Sprite = null
 let diver_hp: StatusBarSprite = null
+let shark2: Sprite = null
 let shark: Sprite = null
-let diffuculty_time = 0
 instructions(game.askForString("What is your name?", 12))
 scene.setBackgroundImage(img`
     8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
@@ -290,7 +302,7 @@ let Air_Level = sprites.create(img`
 Air_Level.setPosition(80, 2)
 diver()
 clamsfunction()
-diffuculty_time = 4000
+let diffuculty_time = 4000
 game.onUpdateInterval(diffuculty_time, function () {
     Sharks()
 })
