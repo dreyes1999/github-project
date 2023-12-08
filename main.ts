@@ -3,6 +3,8 @@ namespace SpriteKind {
     export const pearl = SpriteKind.create()
     export const icerberg_enemy = SpriteKind.create()
     export const tiburon = SpriteKind.create()
+    export const pearl2 = SpriteKind.create()
+    export const pearl3 = SpriteKind.create()
 }
 namespace StatusBarKind {
     export const oxygen_level = StatusBarKind.create()
@@ -26,8 +28,82 @@ function Sharks () {
         ..............cccfffbdbbfcc.....fbbf
         ....................fffff........fff
         `, SpriteKind.tiburon)
+    animation.runImageAnimation(
+    shark,
+    [img`
+        .............ccfff..............
+        ...........ccddbcf..............
+        ..........ccddbbf...............
+        ..........fccbbcf...............
+        .....fffffccccccff.........ccc..
+        ...ffbbbbbbbcbbbbcfff....ccbbc..
+        ..fbbbbbbbbcbcbbbbcccff.cdbbc...
+        ffbbbbbbffbbcbcbbbcccccfcdbbf...
+        fbcbbb11ff1bcbbbbbcccccffbbf....
+        fbbb11111111bbbbbcccccccbbcf....
+        .fb11133cc11bbbbcccccccccccf....
+        ..fccc31c111bbbcccccbdbffbbcf...
+        ...fc13c111cbbbfcddddcc..fbbf...
+        ....fccc111fbdbbccdcc.....fbbf..
+        ........ccccfcdbbcc........fff..
+        .............fffff..............
+        `,img`
+        .............ccfff..............
+        ............cddbbf..............
+        ...........cddbbf...............
+        ..........fccbbcf............ccc
+        ....ffffffccccccff.........ccbbc
+        ..ffbbbbbbbbbbbbbcfff.....cdbbc.
+        ffbbbbbbbbbcbcbbbbcccff..cddbbf.
+        fbcbbbbbffbbcbcbbbcccccfffdbbf..
+        fbbb1111ff1bcbcbbbcccccccbbbcf..
+        .fb11111111bbbbbbcccccccccbccf..
+        ..fccc33cc11bbbbccccccccfffbbcf.
+        ...fc131c111bbbcccccbdbc...fbbf.
+        ....f33c111cbbbfdddddcc.....fbbf
+        .....ff1111fbdbbfddcc........fff
+        .......cccccfbdbbfc.............
+        .............fffff..............
+        `,img`
+        ..............cfff..............
+        ............ccddbf..............
+        ...........cbddbff.........ccc..
+        ..........fccbbcf.........cbbc..
+        ...fffffffccccccff.......cdbc...
+        .ffcbbbbbbbbbbbbbcfff....cdbf...
+        fcbbbbbbbbbcbbbbbbcccff.cdbf....
+        fbcbbbbffbbbcbcbbbcccccffdcf....
+        fbb1111ffbbbcbcbbbccccccbbcf....
+        .fb11111111bbcbbbccccccccbbcf...
+        ..fccc33cb11bbbbcccccccfffbbf...
+        ...fc131c111bbbcccccbdbc..fbbf..
+        ....f33c111cbbccdddddbc....fff..
+        .....ff1111fdbbccddbcc..........
+        .......cccccfdbbbfcc............
+        .............fffff..............
+        `,img`
+        .............ccfff..............
+        ............cddbbf..............
+        ...........cddbbf...............
+        ..........fccbbcf............ccc
+        ....ffffffccccccff.........ccbbc
+        ..ffbbbbbbbbbbbbbcfff.....cdbbc.
+        ffbbbbbbbbbcbcbbbbcccff..cddbbf.
+        fbcbbbbbffbbcbcbbbcccccfffdbbf..
+        fbbb1111ff1bcbcbbbcccccccbbbcf..
+        .fb11111111bbbbbbcccccccccbccf..
+        ..fccc33cc11bbbbccccccccfffbbcf.
+        ...fc131c111bbbcccccbdbc...fbbf.
+        ....f33c111cbbbfdddddcc.....fbbf
+        .....ff1111fbdbbfddcc........fff
+        .......cccccfbdbbfc.............
+        .............fffff..............
+        `],
+    500,
+    true
+    )
     shark.setPosition(175, randint(25, 85))
-    shark.setVelocity(-30, 0)
+    shark.setVelocity(randint(-30, -100), 0)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.tiburon, function (sprite, otherSprite) {
     diver_hp.value += -10
@@ -70,10 +146,85 @@ function instructions (name: string) {
     game.showLongText("HOW TO PLAY: ", DialogLayout.Top)
     game.showLongText("Welcome " + name + "! " + "The goal of this game is to collect as many pearls before you get eaten by a shark!", DialogLayout.Center)
 }
-// Need work (change animation of pearl)
 sprites.onOverlap(SpriteKind.Player, SpriteKind.pearl, function (sprite, otherSprite) {
+    clams.setImage(img`
+        . . . . . f c c c c f . . . . . 
+        . . c c f b b 3 3 b b f c c . . 
+        . c b 3 3 b b c c b b 3 3 b c . 
+        . f 3 c c c b c c b c c c 3 f . 
+        f c b b c c b c c b c c b b c f 
+        c 3 c c b c c c c c c b c c 3 c 
+        c 3 c c c c c c c c c c c c 3 c 
+        . f b b c c c c c c c c b b f . 
+        . . f b b c c c c c c b b f . . 
+        . . c c c f f f f f f c c c . . 
+        . c 3 f f f f f f f f f f 3 c . 
+        c 3 f f f f f f f f f f f f 3 c 
+        f 3 c c f f f f f f f f c c 3 f 
+        f b 3 c b b f b b f b b c 3 b f 
+        . c b b 3 3 b 3 3 b 3 3 b b c . 
+        . . f f f f f f f f f f f f . . 
+        `)
     info.changeScoreBy(1)
-    pause(2000)
+    pause(3000)
+    clams.setImage(img`
+        . . . . . f c c c c f . . . . . 
+        . . c c f b b 3 3 b b f c c . . 
+        . c b 3 3 b b c c b b 3 3 b c . 
+        . f 3 c c c b c c b c c c 3 f . 
+        f c b b c c b c c b c c b b c f 
+        c 3 c c b c c c c c c b c c 3 c 
+        c 3 c c c c c c c c c c c c 3 c 
+        . f b b c c c c c c c c b b f . 
+        . . f b b c 8 9 9 8 c b b f . . 
+        . . c c c f 9 3 1 9 f c c c . . 
+        . c 3 f f f 9 3 3 9 f f f 3 c . 
+        c 3 f f f f 8 9 9 8 f f f f 3 c 
+        f 3 c c f f f f f f f f c c 3 f 
+        f b 3 c b b f b b f b b c 3 b f 
+        . c b b 3 3 b 3 3 b 3 3 b b c . 
+        . . f f f f f f f f f f f f . . 
+        `)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.pearl2, function (sprite, otherSprite) {
+    clam2.setImage(img`
+        . . . . . f c c c c f . . . . . 
+        . . c c f b b 3 3 b b f c c . . 
+        . c b 3 3 b b c c b b 3 3 b c . 
+        . f 3 c c c b c c b c c c 3 f . 
+        f c b b c c b c c b c c b b c f 
+        c 3 c c b c c c c c c b c c 3 c 
+        c 3 c c c c c c c c c c c c 3 c 
+        . f b b c c c c c c c c b b f . 
+        . . f b b c c c c c c b b f . . 
+        . . c c c f f f f f f c c c . . 
+        . c 3 f f f f f f f f f f 3 c . 
+        c 3 f f f f f f f f f f f f 3 c 
+        f 3 c c f f f f f f f f c c 3 f 
+        f b 3 c b b f b b f b b c 3 b f 
+        . c b b 3 3 b 3 3 b 3 3 b b c . 
+        . . f f f f f f f f f f f f . . 
+        `)
+    info.changeScoreBy(1)
+    pause(3000)
+    clam2.setImage(img`
+        . . . . . f c c c c f . . . . . 
+        . . c c f b b 3 3 b b f c c . . 
+        . c b 3 3 b b c c b b 3 3 b c . 
+        . f 3 c c c b c c b c c c 3 f . 
+        f c b b c c b c c b c c b b c f 
+        c 3 c c b c c c c c c b c c 3 c 
+        c 3 c c c c c c c c c c c c 3 c 
+        . f b b c c c c c c c c b b f . 
+        . . f b b c 8 9 9 8 c b b f . . 
+        . . c c c f 9 3 1 9 f c c c . . 
+        . c 3 f f f 9 3 3 9 f f f 3 c . 
+        c 3 f f f f 8 9 9 8 f f f f 3 c 
+        f 3 c c f f f f f f f f c c 3 f 
+        f b 3 c b b f b b f b b c 3 b f 
+        . c b b 3 3 b 3 3 b 3 3 b b c . 
+        . . f f f f f f f f f f f f . . 
+        `)
 })
 function diver () {
     PLayer_diver = sprites.create(assets.image`Diver`, SpriteKind.Player)
@@ -103,10 +254,46 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.icerberg_enemy, function (sprite
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     PLayer_diver.setImage(assets.image`Diver2`)
 })
-// these Three block are not done yet
-function speed_change () {
-    diffuculty_time = diffuculty_time - 500
-}
+sprites.onOverlap(SpriteKind.Player, SpriteKind.pearl3, function (sprite, otherSprite) {
+    clam3.setImage(img`
+        . . . . . f c c c c f . . . . . 
+        . . c c f b b 3 3 b b f c c . . 
+        . c b 3 3 b b c c b b 3 3 b c . 
+        . f 3 c c c b c c b c c c 3 f . 
+        f c b b c c b c c b c c b b c f 
+        c 3 c c b c c c c c c b c c 3 c 
+        c 3 c c c c c c c c c c c c 3 c 
+        . f b b c c c c c c c c b b f . 
+        . . f b b c c c c c c b b f . . 
+        . . c c c f f f f f f c c c . . 
+        . c 3 f f f f f f f f f f 3 c . 
+        c 3 f f f f f f f f f f f f 3 c 
+        f 3 c c f f f f f f f f c c 3 f 
+        f b 3 c b b f b b f b b c 3 b f 
+        . c b b 3 3 b 3 3 b 3 3 b b c . 
+        . . f f f f f f f f f f f f . . 
+        `)
+    info.changeScoreBy(1)
+    pause(3000)
+    clam3.setImage(img`
+        . . . . . f c c c c f . . . . . 
+        . . c c f b b 3 3 b b f c c . . 
+        . c b 3 3 b b c c b b 3 3 b c . 
+        . f 3 c c c b c c b c c c 3 f . 
+        f c b b c c b c c b c c b b c f 
+        c 3 c c b c c c c c c b c c 3 c 
+        c 3 c c c c c c c c c c c c 3 c 
+        . f b b c c c c c c c c b b f . 
+        . . f b b c 8 9 9 8 c b b f . . 
+        . . c c c f 9 3 1 9 f c c c . . 
+        . c 3 f f f 9 3 3 9 f f f 3 c . 
+        c 3 f f f f 8 9 9 8 f f f f 3 c 
+        f 3 c c f f f f f f f f c c 3 f 
+        f b 3 c b b f b b f b b c 3 b f 
+        . c b b 3 3 b 3 3 b 3 3 b b c . 
+        . . f f f f f f f f f f f f . . 
+        `)
+})
 statusbars.onZero(StatusBarKind.oxygen_level, function (status) {
     game.setGameOverMessage(false, "YOU HAVE DROWNED")
     game.gameOver(false)
@@ -114,9 +301,6 @@ statusbars.onZero(StatusBarKind.oxygen_level, function (status) {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Air, function (sprite, otherSprite) {
     player_oxygen.value += 3
     pause(100)
-})
-info.onScore(5, function () {
-    speed_change()
 })
 function clamsfunction () {
     clams = sprites.create(img`
@@ -138,15 +322,53 @@ function clamsfunction () {
         . . f f f f f f f f f f f f . . 
         `, SpriteKind.pearl)
     clams.setPosition(20, 100)
+    clam2 = sprites.create(img`
+        . . . . . f c c c c f . . . . . 
+        . . c c f b b 3 3 b b f c c . . 
+        . c b 3 3 b b c c b b 3 3 b c . 
+        . f 3 c c c b c c b c c c 3 f . 
+        f c b b c c b c c b c c b b c f 
+        c 3 c c b c c c c c c b c c 3 c 
+        c 3 c c c c c c c c c c c c 3 c 
+        . f b b c c c c c c c c b b f . 
+        . . f b b c 8 9 9 8 c b b f . . 
+        . . c c c f 9 3 1 9 f c c c . . 
+        . c 3 f f f 9 3 3 9 f f f 3 c . 
+        c 3 f f f f 8 9 9 8 f f f f 3 c 
+        f 3 c c f f f f f f f f c c 3 f 
+        f b 3 c b b f b b f b b c 3 b f 
+        . c b b 3 3 b 3 3 b 3 3 b b c . 
+        . . f f f f f f f f f f f f . . 
+        `, SpriteKind.pearl2)
+    clam2.setPosition(80, 105)
+    clam3 = sprites.create(img`
+        . . . . . f c c c c f . . . . . 
+        . . c c f b b 3 3 b b f c c . . 
+        . c b 3 3 b b c c b b 3 3 b c . 
+        . f 3 c c c b c c b c c c 3 f . 
+        f c b b c c b c c b c c b b c f 
+        c 3 c c b c c c c c c b c c 3 c 
+        c 3 c c c c c c c c c c c c 3 c 
+        . f b b c c c c c c c c b b f . 
+        . . f b b c 8 9 9 8 c b b f . . 
+        . . c c c f 9 3 1 9 f c c c . . 
+        . c 3 f f f 9 3 3 9 f f f 3 c . 
+        c 3 f f f f 8 9 9 8 f f f f 3 c 
+        f 3 c c f f f f f f f f c c 3 f 
+        f b 3 c b b f b b f b b c 3 b f 
+        . c b b 3 3 b 3 3 b 3 3 b b c . 
+        . . f f f f f f f f f f f f . . 
+        `, SpriteKind.pearl3)
+    clam3.setPosition(134, 105)
 }
 let iceberg: Sprite = null
-let clams: Sprite = null
+let clam3: Sprite = null
 let player_oxygen: StatusBarSprite = null
+let clam2: Sprite = null
+let clams: Sprite = null
 let PLayer_diver: Sprite = null
 let diver_hp: StatusBarSprite = null
 let shark: Sprite = null
-let diffuculty_time = 0
-instructions(game.askForString("What is your name?", 12))
 scene.setBackgroundImage(img`
     8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
     8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
@@ -290,7 +512,106 @@ let Air_Level = sprites.create(img`
 Air_Level.setPosition(80, 2)
 diver()
 clamsfunction()
-diffuculty_time = 4000
+let diffuculty_time = 4000
+while (!(diffuculty_time)) {
+    pause(100)
+}
+game.onUpdateInterval(randint(2000, 2500), function () {
+    shark = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.tiburon)
+    animation.runImageAnimation(
+    shark,
+    [img`
+        . . . c c . . . . . . . . . . . 
+        . . c 3 6 c c c c . . . . . . . 
+        . . c 6 3 3 3 3 6 c . . . . . . 
+        . c 3 3 3 3 3 c c 6 c . c c . . 
+        c 3 3 3 3 3 c 5 5 c 6 c 5 5 b . 
+        c 3 3 3 3 3 f f 5 c 6 c 5 f f . 
+        c c 3 3 3 6 f f 5 c 6 c 5 f f . 
+        c c 6 6 6 6 c 5 5 3 c 3 5 5 b . 
+        c 3 3 3 3 3 3 c 5 5 3 5 5 b . . 
+        c 3 3 3 3 3 c c b 5 5 5 5 c . . 
+        . c 3 3 3 c 5 5 b 4 5 5 4 c . . 
+        . . b b b c c 5 b b 4 4 b 5 c . 
+        . b 5 4 4 4 c 4 5 5 5 b 4 4 c . 
+        . c 5 c 4 4 4 c 5 5 5 c 4 5 c . 
+        . c c c 4 4 4 c 5 5 5 5 c 5 c . 
+        . . . . . . . c c c c c c c . . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . . c c . . . . . . . . . . 
+        . . . c 3 6 c c c c . . . . . . 
+        . . . c 6 3 3 3 6 6 c . . . . . 
+        . . c 3 3 3 3 3 3 6 6 c . . . . 
+        . c 3 3 3 3 3 3 c c 6 6 c c c b 
+        . c 3 3 3 3 3 c 5 5 c 6 c 5 5 b 
+        . c c 3 3 3 6 f f 5 c 6 c 5 f f 
+        . c c 6 6 6 6 f f 5 c c c 5 f f 
+        . c 3 3 3 3 3 3 c 5 5 3 5 5 b . 
+        . c 3 3 3 3 c c c 4 5 5 5 5 c . 
+        . . c 3 3 c 5 5 b 4 4 5 5 4 c . 
+        . . . c b b c 5 b b 4 4 b 5 c . 
+        . . . c 5 c c 5 5 5 c 4 5 c c . 
+        . . . c c c c 5 5 5 5 c c . . . 
+        . . . . . . c c c c c c . . . . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . c c . . . . . . . . . . . 
+        . . c 3 6 c c c c . . . . . . . 
+        . . c 6 3 3 3 6 6 c . . . . . . 
+        . c 3 3 3 3 3 3 6 6 c . . . . . 
+        c 3 3 3 3 3 3 c c 6 6 c c c b . 
+        c 3 3 3 3 3 c 5 5 c 6 c 5 5 b . 
+        c c 3 3 3 6 f f 5 c 6 c 5 f f . 
+        c c 6 6 6 6 f f 5 c c c 5 f f . 
+        c 3 3 3 3 c c c 5 5 3 5 5 b . . 
+        c 3 3 3 c 5 5 b 5 5 5 5 5 c . . 
+        . c 3 3 c 5 b b 4 4 5 5 4 4 c . 
+        . . c b 5 5 5 b 4 4 4 b 5 5 c . 
+        . . b c 5 5 5 c 4 4 4 5 5 5 c . 
+        . . c c 5 5 5 5 c 4 c c c c . . 
+        . . c c c c c c c c c c . . . . 
+        `,img`
+        . . . c c . . . . . . . . . . . 
+        . . c 3 6 c c c c . . . . . . . 
+        . . c 6 3 3 3 3 6 c . . . . . . 
+        . c 3 3 3 3 3 c c 6 c . c c . . 
+        c 3 3 3 3 3 c 5 5 c 6 c 5 5 b . 
+        c 3 3 3 3 3 f f 5 c 6 c 5 f f . 
+        c c 3 3 3 6 f f 5 c 6 c 5 f f . 
+        c c 6 6 6 6 c 5 5 3 c 3 5 5 b . 
+        c 3 3 3 3 3 3 c 5 5 3 5 5 b . . 
+        c 3 3 3 3 3 c c 4 5 5 5 5 c c . 
+        . c 3 3 3 c 5 5 c 4 5 5 4 5 5 c 
+        . . c c b 5 5 5 c 4 4 4 b 4 5 b 
+        . . b b c 5 5 5 c 4 4 b 5 5 4 c 
+        . b 5 c c 5 5 5 5 c 4 c 5 5 5 c 
+        . c 5 c c c c c c 4 c 5 5 5 5 c 
+        . c c c . . . . . c c c c c c . 
+        `],
+    100,
+    true
+    )
+    shark.setPosition(-2, randint(100, 120))
+    shark.setVelocity(randint(30, 70), 0)
+})
 game.onUpdateInterval(diffuculty_time, function () {
     Sharks()
 })
